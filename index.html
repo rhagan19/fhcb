@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grandma's Recipe Collection</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Decorative corner ornaments -->
+    <div class="corner-ornament top-left"></div>
+    <div class="corner-ornament top-right"></div>
+    <div class="corner-ornament bottom-left"></div>
+    <div class="corner-ornament bottom-right"></div>
+
+    <!-- Navigation -->
+    <nav class="vintage-nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-link active">Home</a>
+            <a href="add-recipe.html" class="nav-link">Add Recipe</a>
+            <a href="recipes.html" class="nav-link">Recipe Collection</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Header Banner -->
+        <header class="page-header">
+            <div class="decorative-line"></div>
+            <h1 class="main-title">Grandma's Recipe Collection</h1>
+            <p class="subtitle">Treasured Family Recipes Passed Down Through Generations</p>
+            <div class="decorative-line"></div>
+        </header>
+
+        <!-- Welcome Section -->
+        <section class="welcome-section">
+            <div class="welcome-box">
+                <p class="welcome-text">
+                    Welcome to our family's treasured collection of recipes, lovingly preserved and shared. 
+                    Each recipe tells a story, carries memories of warm kitchens and gathered families, 
+                    and brings the comfort of home-cooked meals to your table.
+                </p>
+            </div>
+        </section>
+
+        <!-- Recently Added Section -->
+        <section class="recent-recipes-section">
+            <h2 class="section-title">
+                <span class="title-ornament">❦</span>
+                Recently Added to Our Collection
+                <span class="title-ornament">❦</span>
+            </h2>
+            
+            <!-- Loading State -->
+            <div id="loading" class="loading-state">
+                <div class="vintage-spinner"></div>
+                <p>Turning the pages...</p>
+            </div>
+
+            <!-- Recipe Cards Container -->
+            <div id="recent-recipes" class="recipe-grid">
+                <!-- Recipe cards will be inserted here by JavaScript -->
+            </div>
+
+            <!-- Empty State -->
+            <div id="empty-state" class="empty-state" style="display: none;">
+                <p class="empty-message">
+                    The cookbook is empty! Start adding your cherished recipes to build your collection.
+                </p>
+                <a href="add-recipe.html" class="vintage-button">Add Your First Recipe</a>
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="cta-section">
+            <div class="cta-box">
+                <h3 class="cta-title">Share Your Family Recipes</h3>
+                <p class="cta-text">
+                    Do you have a treasured recipe to add to our collection? 
+                    Every recipe has a story worth preserving.
+                </p>
+                <a href="add-recipe.html" class="vintage-button large">Add a Recipe</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="page-footer">
+        <div class="decorative-line small"></div>
+        <p class="footer-text">Preserving culinary heritage, one recipe at a time</p>
+        <p class="footer-year">Est. 2026</p>
+    </footer>
+
+    <script src="app.js"></script>
+    <script>
+        // Initialize home page
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchRecentRecipes();
+        });
+    </script>
+</body>
+</html>

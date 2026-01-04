@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Collection - Grandma's Recipe Collection</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Decorative corner ornaments -->
+    <div class="corner-ornament top-left"></div>
+    <div class="corner-ornament top-right"></div>
+    <div class="corner-ornament bottom-left"></div>
+    <div class="corner-ornament bottom-right"></div>
+
+    <!-- Navigation -->
+    <nav class="vintage-nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="add-recipe.html" class="nav-link">Add Recipe</a>
+            <a href="recipes.html" class="nav-link active">Recipe Collection</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Header -->
+        <header class="page-header">
+            <div class="decorative-line"></div>
+            <h1 class="main-title">Recipe Collection</h1>
+            <p class="subtitle">Browse through our treasured family recipes</p>
+            <div class="decorative-line"></div>
+        </header>
+
+        <!-- Search and Filter Section -->
+        <section class="search-section">
+            <div class="search-container">
+                <div class="search-box">
+                    <label for="search-input" class="search-label">Search Recipes</label>
+                    <input 
+                        type="text" 
+                        id="search-input" 
+                        class="search-input" 
+                        placeholder="Search by recipe name or ingredient..."
+                    >
+                </div>
+
+                <div class="filter-box">
+                    <label for="category-filter" class="filter-label">Filter by Category</label>
+                    <select id="category-filter" class="filter-select">
+                        <option value="">All Categories</option>
+                        <option value="appetizers">Appetizers</option>
+                        <option value="main-course">Main Course</option>
+                        <option value="desserts">Desserts</option>
+                        <option value="beverages">Beverages</option>
+                        <option value="soups">Soups & Stews</option>
+                        <option value="salads">Salads</option>
+                        <option value="breads">Breads & Pastries</option>
+                        <option value="preserves">Preserves & Pickles</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="results-count" id="results-count"></div>
+        </section>
+
+        <!-- Loading State -->
+        <div id="recipes-loading" class="loading-state">
+            <div class="vintage-spinner"></div>
+            <p>Loading recipes...</p>
+        </div>
+
+        <!-- Recipes List -->
+        <section id="recipes-container" class="recipes-list-section">
+            <!-- Recipe cards will be inserted here -->
+        </section>
+
+        <!-- Empty State -->
+        <div id="recipes-empty" class="empty-state" style="display: none;">
+            <p class="empty-message">No recipes found matching your search.</p>
+            <button onclick="clearSearch()" class="vintage-button">Clear Search</button>
+        </div>
+    </main>
+
+    <!-- Recipe Detail Modal -->
+    <div id="recipe-modal" class="modal" style="display: none;">
+        <div class="modal-overlay" onclick="closeRecipeModal()"></div>
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeRecipeModal()">&times;</button>
+            
+            <div id="recipe-detail" class="recipe-detail">
+                <!-- Recipe details will be inserted here -->
+            </div>
+
+            <!-- Comments Section -->
+            <div class="comments-section">
+                <h3 class="comments-title">
+                    <span class="title-ornament">✿</span>
+                    Recipe Notes & Comments
+                    <span class="title-ornament">✿</span>
+                </h3>
+
+                <!-- Add Comment Form -->
+                <div class="add-comment-box">
+                    <h4 class="add-comment-title">Share Your Thoughts</h4>
+                    <form id="comment-form" class="comment-form">
+                        <div class="form-group">
+                            <input 
+                                type="text" 
+                                id="comment-username" 
+                                class="form-input small" 
+                                placeholder="Your name"
+                                required
+                            >
+                        </div>
+                        <div class="form-group">
+                            <textarea 
+                                id="comment-text" 
+                                class="form-textarea" 
+                                rows="3"
+                                placeholder="Share your experience, tips, or variations..."
+                                required
+                            ></textarea>
+                        </div>
+                        <button type="submit" class="vintage-button small">Add Comment</button>
+                    </form>
+                </div>
+
+                <!-- Comments List -->
+                <div id="comments-list" class="comments-list">
+                    <!-- Comments will be inserted here -->
+                </div>
+
+                <!-- Comments Loading -->
+                <div id="comments-loading" class="loading-state small" style="display: none;">
+                    <div class="vintage-spinner small"></div>
+                    <p>Loading comments...</p>
+                </div>
+
+                <!-- No Comments State -->
+                <div id="no-comments" class="no-comments" style="display: none;">
+                    <p>No comments yet. Be the first to share your thoughts!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="page-footer">
+        <div class="decorative-line small"></div>
+        <p class="footer-text">Preserving culinary heritage, one recipe at a time</p>
+        <p class="footer-year">Est. 2026</p>
+    </footer>
+
+    <script src="app.js"></script>
+    <script>
+        // Initialize recipes page
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchAllRecipes();
+            initializeSearch();
+        });
+    </script>
+</body>
+</html>
