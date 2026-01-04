@@ -22,7 +22,8 @@ if (!admin.apps.length) {
                 privateKey: process.env.FIREBASE_PRIVATE_KEY 
                     ? process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n')
                     : undefined
-            })
+            }),
+            databaseURL: `https://${process.env.FIREBASE_PROJECT_ID}.firebaseio.com`
         });
     } catch (error) {
         console.error('Firebase initialization error:', error);
@@ -30,6 +31,10 @@ if (!admin.apps.length) {
 }
 
 const db = admin.firestore();
+// Explicitly set the database settings
+db.settings({
+    ignoreUndefinedProperties: true
+});
 
 /**
  * CORS headers for cross-origin requests
@@ -57,19 +62,19 @@ module.exports = async (req, res) => {
     try {
         const { method, query, url } = req;
         
-        // Extract recipe ID from URL if present
-        const urlParts = url.split('/');
-        const recipeId = urlParts[urlParts.length - 1] !== 'recipes' 
-            ? urlParts[urlParts.length - 1] 
-            : null;
+        // Extract recipe ID from URL if present (remove query string first)
+        const urlWithoutQuery = url.split('?')[0];
+        const urlParts = urlWithoutQuery.split('/');
+        const lastPart = urlParts[urlParts.length - 1];
+        const recipeId = (lastPart && lastPart !== 'recipes') ? lastPart : null;
 
         // Route based on method and parameters
-        if (method === 'GET' && recipeId && recipeId !== 'recipes') {
+        if (method === 'GET' && query.recent) {
+            // Get recent recipes (check this BEFORE checking recipeId)
+            return await getRecentRecipes(req, res, parseInt(query.recent));
+        } else if (method === 'GET' && recipeId) {
             // Get single recipe by ID
             return await getRecipeById(req, res, recipeId);
-        } else if (method === 'GET' && query.recent) {
-            // Get recent recipes
-            return await getRecentRecipes(req, res, parseInt(query.recent));
         } else if (method === 'GET') {
             // Get all recipes
             return await getAllRecipes(req, res);
