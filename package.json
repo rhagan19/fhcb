@@ -1,0 +1,16 @@
+{
+  "name": "vintage-cookbook",
+  "version": "1.0.0",
+  "description": "A vintage-style cookbook web application",
+  "main": "index.html",
+  "scripts": {
+    "dev": "vercel dev",
+    "deploy": "vercel --prod"
+  },
+  "dependencies": {
+    "firebase-admin": "^11.11.1"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
