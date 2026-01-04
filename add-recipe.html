@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Recipe - Grandma's Recipe Collection</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Decorative corner ornaments -->
+    <div class="corner-ornament top-left"></div>
+    <div class="corner-ornament top-right"></div>
+    <div class="corner-ornament bottom-left"></div>
+    <div class="corner-ornament bottom-right"></div>
+
+    <!-- Navigation -->
+    <nav class="vintage-nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="add-recipe.html" class="nav-link active">Add Recipe</a>
+            <a href="recipes.html" class="nav-link">Recipe Collection</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Header -->
+        <header class="page-header">
+            <div class="decorative-line"></div>
+            <h1 class="main-title">Add a New Recipe</h1>
+            <p class="subtitle">Preserve your cherished recipe for generations to come</p>
+            <div class="decorative-line"></div>
+        </header>
+
+        <!-- Recipe Form -->
+        <section class="form-section">
+            <div class="form-container">
+                <form id="recipe-form" class="recipe-form">
+                    <!-- Recipe Name -->
+                    <div class="form-group">
+                        <label for="recipe-name" class="form-label">Recipe Name *</label>
+                        <input 
+                            type="text" 
+                            id="recipe-name" 
+                            name="name" 
+                            class="form-input" 
+                            placeholder="e.g., Grandma's Apple Pie"
+                            required
+                        >
+                    </div>
+
+                    <!-- Category and Times Row -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="category" class="form-label">Category *</label>
+                            <select id="category" name="category" class="form-select" required>
+                                <option value="">Select a category</option>
+                                <option value="appetizers">Appetizers</option>
+                                <option value="main-course">Main Course</option>
+                                <option value="desserts">Desserts</option>
+                                <option value="beverages">Beverages</option>
+                                <option value="soups">Soups & Stews</option>
+                                <option value="salads">Salads</option>
+                                <option value="breads">Breads & Pastries</option>
+                                <option value="preserves">Preserves & Pickles</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="prep-time" class="form-label">Prep Time</label>
+                            <input 
+                                type="text" 
+                                id="prep-time" 
+                                name="prepTime" 
+                                class="form-input" 
+                                placeholder="e.g., 30 minutes"
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cook-time" class="form-label">Cook Time</label>
+                            <input 
+                                type="text" 
+                                id="cook-time" 
+                                name="cookTime" 
+                                class="form-input" 
+                                placeholder="e.g., 1 hour"
+                            >
+                        </div>
+                    </div>
+
+                    <!-- Ingredients -->
+                    <div class="form-group">
+                        <label for="ingredients" class="form-label">Ingredients *</label>
+                        <textarea 
+                            id="ingredients" 
+                            name="ingredients" 
+                            class="form-textarea" 
+                            rows="8"
+                            placeholder="List each ingredient on a new line:&#10;2 cups all-purpose flour&#10;1 cup sugar&#10;3 eggs&#10;..."
+                            required
+                        ></textarea>
+                        <small class="form-hint">Enter each ingredient on a separate line</small>
+                    </div>
+
+                    <!-- Instructions -->
+                    <div class="form-group">
+                        <label for="instructions" class="form-label">Instructions *</label>
+                        <textarea 
+                            id="instructions" 
+                            name="instructions" 
+                            class="form-textarea" 
+                            rows="12"
+                            placeholder="Write detailed step-by-step instructions...&#10;&#10;1. Preheat oven to 350°F&#10;2. Mix dry ingredients together...&#10;3. ..."
+                            required
+                        ></textarea>
+                    </div>
+
+                    <!-- Notes -->
+                    <div class="form-group">
+                        <label for="notes" class="form-label">Notes & Tips</label>
+                        <textarea 
+                            id="notes" 
+                            name="notes" 
+                            class="form-textarea" 
+                            rows="4"
+                            placeholder="Share any special tips, variations, or family stories about this recipe..."
+                        ></textarea>
+                    </div>
+
+                    <!-- Error Message -->
+                    <div id="form-error" class="form-message error" style="display: none;"></div>
+
+                    <!-- Success Message -->
+                    <div id="form-success" class="form-message success" style="display: none;">
+                        <strong>Success!</strong> Your recipe has been added to the collection.
+                        <a href="recipes.html" class="success-link">View all recipes</a>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="form-actions">
+                        <button type="submit" class="vintage-button large" id="submit-btn">
+                            <span class="btn-text">Add to Collection</span>
+                            <span class="btn-loading" style="display: none;">Adding Recipe...</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- Tips Section -->
+        <section class="tips-section">
+            <div class="tips-box">
+                <h3 class="tips-title">Recipe Writing Tips</h3>
+                <ul class="tips-list">
+                    <li>Be specific with measurements and temperatures</li>
+                    <li>Include preparation and cooking times</li>
+                    <li>Note any special equipment needed</li>
+                    <li>Share family stories or memories associated with the recipe</li>
+                    <li>Mention any possible substitutions or variations</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="page-footer">
+        <div class="decorative-line small"></div>
+        <p class="footer-text">Preserving culinary heritage, one recipe at a time</p>
+        <p class="footer-year">Est. 2026</p>
+    </footer>
+
+    <script src="app.js"></script>
+    <script>
+        // Initialize form page
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeRecipeForm();
+        });
+    </script>
+</body>
+</html>
