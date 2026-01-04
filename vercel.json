@@ -1,6 +1,0 @@
-{
-  "rewrites": [
-    { "source": "/api/recipes", "destination": "/api/recipes.js" },
-    { "source": "/api/comments", "destination": "/api/comments.js" }
-  ]
-}
