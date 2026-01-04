@@ -62,11 +62,20 @@ module.exports = async (req, res) => {
     try {
         const { method, query, url } = req;
         
+        // Log for debugging
+        console.log('Request:', { method, url, query });
+        
         // Extract recipe ID from URL if present (remove query string first)
         const urlWithoutQuery = url.split('?')[0];
-        const urlParts = urlWithoutQuery.split('/');
+        const urlParts = urlWithoutQuery.split('/').filter(part => part.length > 0);
+        
+        // Get the last part of the URL path
         const lastPart = urlParts[urlParts.length - 1];
-        const recipeId = (lastPart && lastPart !== 'recipes') ? lastPart : null;
+        
+        // Recipe ID is present if last part is not 'recipes' and looks like an ID
+        const recipeId = (lastPart && lastPart !== 'recipes' && lastPart.length > 10) ? lastPart : null;
+        
+        console.log('Parsed:', { urlParts, lastPart, recipeId });
 
         // Route based on method and parameters
         if (method === 'GET' && query.recent) {
